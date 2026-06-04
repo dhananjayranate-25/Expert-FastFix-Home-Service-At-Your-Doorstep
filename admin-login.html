@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - FastFix</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(239, 68, 68, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(239, 68, 68, 0.6); }
+        }
+        .float-animation { animation: float 3s ease-in-out infinite; }
+        .glow-animation { animation: pulse-glow 2s ease-in-out infinite; }
+        .login-card { animation: slideIn 0.8s ease-out; }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="font-['Roboto'] bg-gradient-to-br from-red-50 via-gray-50 to-red-100 min-h-screen flex items-center justify-center p-4 overflow-hidden">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-5">
+        <div class="absolute top-20 left-20 w-32 h-32 border-2 border-red-300 rounded-full"></div>
+        <div class="absolute top-40 right-32 w-24 h-24 border-2 border-red-400 rounded-full"></div>
+        <div class="absolute bottom-32 left-40 w-20 h-20 border-2 border-red-500 rounded-full"></div>
+        <div class="absolute bottom-20 right-20 w-16 h-16 border-2 border-red-600 rounded-full"></div>
+    </div>
+
+    <div class="login-card bg-white/95 backdrop-blur-lg p-10 rounded-3xl shadow-2xl w-full max-w-md border border-red-100/50 relative overflow-hidden">
+        <!-- Animated Background Elements -->
+        <div class="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-red-200 to-red-300 rounded-full opacity-20 float-animation"></div>
+        <div class="absolute -bottom-16 -left-16 w-32 h-32 bg-gradient-to-tr from-red-300 to-red-400 rounded-full opacity-15 float-animation" style="animation-delay: 1s;"></div>
+
+        <!-- Logo/Brand Section -->
+        <div class="text-center mb-10 relative z-10">
+            <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-red-500 to-red-600 rounded-full mb-6 shadow-xl glow-animation">
+                <i class="fas fa-crown text-white text-3xl"></i>
+            </div>
+            <h1 class="text-4xl font-['Playfair_Display'] font-bold text-gray-800 mb-3 tracking-wide">Admin Portal</h1>
+            <p class="text-gray-600 text-lg">Secure access to management dashboard</p>
+            <div class="mt-4 flex justify-center space-x-2">
+                <div class="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
+                <div class="w-2 h-2 bg-red-500 rounded-full animate-pulse" style="animation-delay: 0.2s;"></div>
+                <div class="w-2 h-2 bg-red-600 rounded-full animate-pulse" style="animation-delay: 0.4s;"></div>
+            </div>
+        </div>
+
+        <!-- Error Message Container -->
+        <div id="error-message" class="hidden mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm font-medium">
+            <i class="fas fa-exclamation-triangle mr-2"></i>
+            <span id="error-text">Invalid credentials. Please try again.</span>
+        </div>
+
+        <form id="admin-login-form" class="space-y-6 relative z-10">
+            <div class="relative group">
+                <i class="fas fa-user-shield absolute left-4 top-1/2 transform -translate-y-1/2 text-red-400 group-focus-within:text-red-600 transition-colors"></i>
+                <input type="text" placeholder="Administrator Username" required
+                       class="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-red-100 focus:border-red-400 transition-all duration-300 bg-gray-50 focus:bg-white text-gray-700 placeholder-gray-400 shadow-sm">
+            </div>
+
+            <div class="relative group">
+                <i class="fas fa-lock absolute left-4 top-1/2 transform -translate-y-1/2 text-red-400 group-focus-within:text-red-600 transition-colors"></i>
+                <input type="password" placeholder="Secure Password" required
+                       class="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-red-100 focus:border-red-400 transition-all duration-300 bg-gray-50 focus:bg-white text-gray-700 placeholder-gray-400 shadow-sm">
+            </div>
+
+            <div class="flex items-center justify-between">
+                <label class="flex items-center group cursor-pointer">
+                    <input type="checkbox" class="rounded border-2 border-gray-300 text-red-600 focus:ring-red-500 focus:ring-2 w-4 h-4">
+                    <span class="ml-3 text-sm text-gray-600 group-hover:text-gray-800 transition-colors">Stay logged in</span>
+                </label>
+                <a href="#" onclick="showChangePasswordModal()" class="text-sm text-red-600 hover:text-red-800 font-semibold transition-all duration-200 hover:underline">Change Password</a>
+            </div>
+
+            <button type="submit" id="login-btn"
+                    class="w-full bg-gradient-to-r from-red-500 via-red-600 to-red-700 hover:from-red-600 hover:via-red-700 hover:to-red-800 text-white py-4 rounded-2xl transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 font-bold text-lg relative overflow-hidden group">
+                <span class="relative z-10 flex items-center justify-center">
+                    <i class="fas fa-sign-in-alt mr-3"></i>
+                    <span id="btn-text">Access Dashboard</span>
+                    <i class="fas fa-arrow-right ml-3 transform group-hover:translate-x-1 transition-transform"></i>
+                </span>
+                <div class="absolute inset-0 bg-gradient-to-r from-red-400 to-red-600 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+            </button>
+        </form>
+
+        <div class="mt-6 text-center relative z-10">
+            <p class="text-gray-500 text-sm">Are you a user?
+                <a href="login.html" class="text-blue-600 hover:text-blue-800 font-semibold ml-1 transition-colors duration-200 hover:underline">User Login</a>
+            </p>
+        </div>
+
+        <div class="mt-4 text-center relative z-10">
+            <p class="text-gray-500 text-sm">Are you an employee?
+                <a href="employee-login.html" class="text-green-600 hover:text-green-800 font-semibold ml-1 transition-colors duration-200 hover:underline">Employee Login</a>
+            </p>
+        </div>
+
+        <div class="mt-4 text-center relative z-10">
+            <a href="index.html" class="text-gray-500 hover:text-red-600 text-sm transition-colors">
+                <i class="fas fa-home mr-2"></i>Back to Home
+            </a>
+        </div>
+
+        <div class="mt-6 text-center relative z-10">
+            <p class="text-gray-500 text-sm">Need assistance?
+                <a href="#" class="text-red-600 hover:text-red-800 font-semibold ml-1 transition-colors duration-200 hover:underline">Contact IT Support</a>
+            </p>
+        </div>
+
+        <!-- Security Badge -->
+        <div class="mt-6 flex justify-center">
+            <div class="flex items-center bg-green-50 px-4 py-2 rounded-full border border-green-200">
+                <i class="fas fa-shield-alt text-green-600 mr-2"></i>
+                <span class="text-green-700 text-xs font-semibold">Secure SSL Connection</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div id="change-password-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full mx-4 shadow-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">Change Admin Password</h3>
+                <button onclick="closeChangePasswordModal()" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <form id="admin-change-password-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Current Password</label>
+                    <input type="password" id="admin-cp-current-password" required placeholder="Enter current password"
+                           class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">New Password</label>
+                    <input type="password" id="admin-cp-new-password" required placeholder="Enter new password"
+                           class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Confirm New Password</label>
+                    <input type="password" id="admin-cp-confirm-password" required placeholder="Confirm new password"
+                           class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500">
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-red-500 to-red-600 text-white py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300">
+                    Update Password
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Initialize admin credentials in localStorage if not exists
+        if (!localStorage.getItem('adminCredentials')) {
+            localStorage.setItem('adminCredentials', JSON.stringify({ username: 'admin', password: 'admin' }));
+        }
+
+        const form = document.getElementById('admin-login-form');
+        const errorMessage = document.getElementById('error-message');
+        const loginBtn = document.getElementById('login-btn');
+        const btnText = document.getElementById('btn-text');
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // Show loading state
+            loginBtn.disabled = true;
+            btnText.textContent = 'Authenticating...';
+            loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-3"></i><span id="btn-text">Authenticating...</span>';
+
+            const username = this.querySelector('input[type="text"]').value;
+            const password = this.querySelector('input[type="password"]').value;
+
+            try {
+                const response = await fetch('http://localhost:5000/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: username, password, role: 'admin' })
+                });
+
+                if (response.ok) {
+                    // Success animation
+                    loginBtn.innerHTML = '<i class="fas fa-check mr-3"></i><span id="btn-text">Success!</span>';
+                    loginBtn.classList.add('bg-green-500', 'hover:bg-green-600');
+                    loginBtn.classList.remove('bg-gradient-to-r', 'from-red-500', 'via-red-600', 'to-red-700', 'hover:from-red-600', 'hover:via-red-700', 'hover:to-red-800');
+
+                    setTimeout(() => {
+                        localStorage.setItem('adminLoggedIn', 'true');
+                        window.location.href = 'admin-dashboard.html';
+                    }, 1000);
+                } else {
+                    const errorData = await response.json();
+                    document.getElementById('error-text').textContent = errorData.error || 'Invalid credentials. Please try again.';
+
+                    // Show error
+                    errorMessage.classList.remove('hidden');
+                    errorMessage.classList.add('animate-pulse');
+
+                    // Reset button
+                    loginBtn.disabled = false;
+                    loginBtn.innerHTML = '<i class="fas fa-sign-in-alt mr-3"></i><span id="btn-text">Access Dashboard</span><i class="fas fa-arrow-right ml-3 transform group-hover:translate-x-1 transition-transform"></i>';
+                    loginBtn.classList.remove('bg-green-500', 'hover:bg-green-600');
+                    loginBtn.classList.add('bg-gradient-to-r', 'from-red-500', 'via-red-600', 'to-red-700', 'hover:from-red-600', 'hover:via-red-700', 'hover:to-red-800');
+
+                    // Hide error after 5 seconds
+                    setTimeout(() => {
+                        errorMessage.classList.add('hidden');
+                        errorMessage.classList.remove('animate-pulse');
+                    }, 5000);
+                }
+            } catch (err) {
+                console.error(err);
+                document.getElementById('error-text').textContent = 'Server connection error. Please try again later.';
+                errorMessage.classList.remove('hidden');
+                
+                // Reset button
+                loginBtn.disabled = false;
+                loginBtn.innerHTML = '<i class="fas fa-sign-in-alt mr-3"></i><span id="btn-text">Access Dashboard</span><i class="fas fa-arrow-right ml-3 transform group-hover:translate-x-1 transition-transform"></i>';
+            }
+        });
+
+        // Add input focus effects
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('ring-2', 'ring-red-200');
+            });
+            input.addEventListener('blur', function() {
+                this.parentElement.classList.remove('ring-2', 'ring-red-200');
+            });
+        });
+
+        // Change Password Functions
+        function showChangePasswordModal() {
+            document.getElementById('change-password-modal').classList.remove('hidden');
+        }
+
+        function closeChangePasswordModal() {
+            document.getElementById('change-password-modal').classList.add('hidden');
+            document.getElementById('admin-change-password-form').reset();
+        }
+
+        document.getElementById('admin-change-password-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const currentPassword = document.getElementById('admin-cp-current-password').value;
+            const newPassword = document.getElementById('admin-cp-new-password').value;
+            const confirmPassword = document.getElementById('admin-cp-confirm-password').value;
+
+            if (newPassword !== confirmPassword) {
+                alert('New passwords do not match!');
+                return;
+            }
+
+            if (newPassword.length < 4) {
+                alert('Password must be at least 4 characters!');
+                return;
+            }
+
+            const storedCreds = JSON.parse(localStorage.getItem('adminCredentials'));
+
+            if (currentPassword !== storedCreds.password) {
+                alert('Current password is incorrect!');
+                return;
+            }
+
+            storedCreds.password = newPassword;
+            localStorage.setItem('adminCredentials', JSON.stringify(storedCreds));
+
+            alert('Admin password changed successfully! Please login with new password.');
+            closeChangePasswordModal();
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('change-password-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

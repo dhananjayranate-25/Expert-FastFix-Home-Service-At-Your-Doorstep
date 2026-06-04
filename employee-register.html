@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Registration - FastFix</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(16, 185, 129, 0.6); }
+        }
+        .float-animation { animation: float 3s ease-in-out infinite; }
+        .glow-animation { animation: pulse-glow 2s ease-in-out infinite; }
+        .register-card { animation: slideIn 0.8s ease-out; }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="font-['Roboto'] bg-gradient-to-br from-green-50 via-gray-50 to-green-100 min-h-screen flex items-center justify-center p-4 overflow-hidden">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-5">
+        <div class="absolute top-20 left-20 w-32 h-32 border-2 border-green-300 rounded-full"></div>
+        <div class="absolute top-40 right-32 w-24 h-24 border-2 border-green-400 rounded-full"></div>
+        <div class="absolute bottom-32 left-40 w-20 h-20 border-2 border-green-500 rounded-full"></div>
+    </div>
+
+    <div class="register-card bg-white/95 backdrop-blur-lg p-10 rounded-3xl shadow-2xl w-full max-w-md border border-green-100/50 relative overflow-hidden">
+        <!-- Animated Background Elements -->
+        <div class="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-green-200 to-green-300 rounded-full opacity-20 float-animation"></div>
+        <div class="absolute -bottom-16 -left-16 w-32 h-32 bg-gradient-to-tr from-green-300 to-green-400 rounded-full opacity-15 float-animation" style="animation-delay: 1s;"></div>
+
+        <!-- Logo/Brand Section -->
+        <div class="text-center mb-8 relative z-10">
+            <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-green-500 to-green-600 rounded-full mb-6 shadow-xl glow-animation">
+                <i class="fas fa-user-plus text-white text-3xl"></i>
+            </div>
+            <h1 class="text-3xl font-['Playfair_Display'] font-bold text-gray-800 mb-3 tracking-wide">Employee Registration</h1>
+            <p class="text-gray-600 text-lg">Register as a FastFix Employee</p>
+        </div>
+
+        <!-- Error/Success Message Container -->
+        <div id="message-container" class="hidden mb-6 p-4 rounded-xl text-sm font-medium"></div>
+
+        <form id="register-form" class="space-y-5 relative z-10">
+            <div class="relative group">
+                <i class="fas fa-user absolute left-4 top-1/2 transform -translate-y-1/2 text-green-400 group-focus-within:text-green-600 transition-colors"></i>
+                <input type="text" id="name" placeholder="Full Name" required
+                       class="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-green-100 focus:border-green-400 transition-all duration-300 bg-gray-50 focus:bg-white text-gray-700 placeholder-gray-400 shadow-sm">
+            </div>
+
+            <div class="relative group">
+                <i class="fas fa-envelope absolute left-4 top-1/2 transform -translate-y-1/2 text-green-400 group-focus-within:text-green-600 transition-colors"></i>
+                <input type="email" id="email" placeholder="Email Address" required
+                       class="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-green-100 focus:border-green-400 transition-all duration-300 bg-gray-50 focus:bg-white text-gray-700 placeholder-gray-400 shadow-sm">
+            </div>
+
+            <div class="relative group">
+                <i class="fas fa-tools absolute left-4 top-1/2 transform -translate-y-1/2 text-green-400 group-focus-within:text-green-600 transition-colors"></i>
+                <select id="service" required
+                        class="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-green-100 focus:border-green-400 transition-all duration-300 bg-gray-50 focus:bg-white text-gray-700 shadow-sm">
+                    <option value="">Select Your Service</option>
+                    <option value="Cleaning">Cleaning</option>
+                    <option value="Plumbing">Plumbing</option>
+                    <option value="Electrical">Electrical</option>
+                    <option value="Gardening">Gardening</option>
+                    <option value="Painting">Painting</option>
+                    <option value="Carpentry">Carpentry</option>
+                    <option value="HVAC">HVAC</option>
+                    <option value="Roofing">Roofing</option>
+                    <option value="Flooring">Flooring</option>
+                    <option value="Appliance Repair">Appliance Repair</option>
+                    <option value="Pest Control">Pest Control</option>
+                    <option value="Window Cleaning">Window Cleaning</option>
+                    <option value="Landscaping">Landscaping</option>
+                    <option value="Home Security">Home Security</option>
+                    <option value="Insulation">Insulation</option>
+                    <option value="Drywall">Drywall</option>
+                    <option value="Tile Installation">Tile Installation</option>
+                    <option value="Deck Building">Deck Building</option>
+                    <option value="Fence Installation">Fence Installation</option>
+                    <option value="Pool Maintenance">Pool Maintenance</option>
+                    <option value="All Services">All Services</option>
+                </select>
+            </div>
+
+            <div class="relative group">
+                <i class="fas fa-lock absolute left-4 top-1/2 transform -translate-y-1/2 text-green-400 group-focus-within:text-green-600 transition-colors"></i>
+                <input type="password" id="password" placeholder="Password" required minlength="4"
+                       class="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-green-100 focus:border-green-400 transition-all duration-300 bg-gray-50 focus:bg-white text-gray-700 placeholder-gray-400 shadow-sm">
+            </div>
+
+            <div class="relative group">
+                <i class="fas fa-lock absolute left-4 top-1/2 transform -translate-y-1/2 text-green-400 group-focus-within:text-green-600 transition-colors"></i>
+                <input type="password" id="confirm-password" placeholder="Confirm Password" required minlength="4"
+                       class="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-green-100 focus:border-green-400 transition-all duration-300 bg-gray-50 focus:bg-white text-gray-700 placeholder-gray-400 shadow-sm">
+            </div>
+
+            <button type="submit" id="register-btn"
+                    class="w-full bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:from-green-600 hover:via-green-700 hover:to-green-800 text-white py-4 rounded-2xl transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 font-bold text-lg relative overflow-hidden group">
+                <span class="relative z-10 flex items-center justify-center">
+                    <i class="fas fa-user-plus mr-3"></i>
+                    <span id="btn-text">Register</span>
+                </span>
+                <div class="absolute inset-0 bg-gradient-to-r from-green-400 to-green-600 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+            </button>
+        </form>
+
+        <div class="mt-8 text-center relative z-10">
+            <p class="text-gray-500 text-sm">Already have an account?
+                <a href="employee-login.html" class="text-green-600 hover:text-green-800 font-semibold ml-1 transition-colors duration-200 hover:underline">Sign in here</a>
+            </p>
+        </div>
+
+        <!-- Back to Home -->
+        <div class="mt-6 text-center relative z-10">
+            <a href="index.html" class="text-gray-500 hover:text-green-600 text-sm transition-colors">
+                <i class="fas fa-home mr-2"></i>Back to Home
+            </a>
+        </div>
+
+        <!-- Trust Badge -->
+        <div class="mt-6 flex justify-center">
+            <div class="flex items-center bg-green-50 px-4 py-2 rounded-full border border-green-200">
+                <i class="fas fa-shield-alt text-green-600 mr-2"></i>
+                <span class="text-green-700 text-xs font-semibold">Secure Registration</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('register-form');
+        const messageContainer = document.getElementById('message-container');
+        const registerBtn = document.getElementById('register-btn');
+        const btnText = document.getElementById('btn-text');
+
+        function showMessage(message, type) {
+            messageContainer.textContent = message;
+            messageContainer.className = `mb-6 p-4 rounded-xl text-sm font-medium ${type === 'success' ? 'bg-green-50 border border-green-200 text-green-700' : 'bg-red-50 border border-red-200 text-red-700'}`;
+            messageContainer.classList.remove('hidden');
+            
+            if (type === 'success') {
+                setTimeout(() => {
+                    window.location.href = 'employee-login.html';
+                }, 2000);
+            }
+        }
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const service = document.getElementById('service').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            // Validation
+            if (password !== confirmPassword) {
+                showMessage('Passwords do not match!', 'error');
+                return;
+            }
+
+            if (password.length < 4) {
+                showMessage('Password must be at least 4 characters!', 'error');
+                return;
+            }
+
+            if (!service) {
+                showMessage('Please select your service!', 'error');
+                return;
+            }
+
+            // Show loading state
+            registerBtn.disabled = true;
+            btnText.textContent = 'Registering...';
+            registerBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-3"></i><span id="btn-text">Registering...</span>';
+
+            try {
+                const response = await fetch('http://localhost:5000/api/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, password, service, role: 'employee' })
+                });
+
+                if (response.ok) {
+                    // Success
+                    showMessage('Registration successful! Redirecting to login...', 'success');
+                    
+                    // Reset form
+                    form.reset();
+                } else {
+                    const errorData = await response.json();
+                    showMessage(errorData.error || 'Registration failed.', 'error');
+                    registerBtn.disabled = false;
+                    btnText.textContent = 'Register';
+                    registerBtn.innerHTML = '<i class="fas fa-user-plus mr-3"></i><span id="btn-text">Register</span>';
+                }
+            } catch (err) {
+                console.error(err);
+                showMessage('Server connection error.', 'error');
+                registerBtn.disabled = false;
+                btnText.textContent = 'Register';
+                registerBtn.innerHTML = '<i class="fas fa-user-plus mr-3"></i><span id="btn-text">Register</span>';
+            }
+        });
+
+        // Add input focus effects
+        const inputs = document.querySelectorAll('input, select');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('ring-2', 'ring-green-200');
+            });
+            input.addEventListener('blur', function() {
+                this.parentElement.classList.remove('ring-2', 'ring-green-200');
+            });
+        });
+    </script>
+</body>
+</html>

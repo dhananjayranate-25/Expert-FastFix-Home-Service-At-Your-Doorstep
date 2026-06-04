@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Login - FastFix</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.6); }
+        }
+        .float-animation { animation: float 3s ease-in-out infinite; }
+        .glow-animation { animation: pulse-glow 2s ease-in-out infinite; }
+        .login-card { animation: slideIn 0.8s ease-out; }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="font-['Roboto'] bg-gradient-to-br from-green-50 via-gray-50 to-green-100 min-h-screen flex items-center justify-center p-4 overflow-hidden">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-5">
+        <div class="absolute top-20 left-20 w-32 h-32 border-2 border-green-300 rounded-full"></div>
+        <div class="absolute top-40 right-32 w-24 h-24 border-2 border-green-400 rounded-full"></div>
+        <div class="absolute bottom-32 left-40 w-20 h-20 border-2 border-green-500 rounded-full"></div>
+        <div class="absolute bottom-20 right-20 w-16 h-16 border-2 border-green-600 rounded-full"></div>
+    </div>
+
+    <div class="login-card bg-white/95 backdrop-blur-lg p-10 rounded-3xl shadow-2xl w-full max-w-md border border-green-100/50 relative overflow-hidden">
+        <!-- Animated Background Elements -->
+        <div class="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-green-200 to-green-300 rounded-full opacity-20 float-animation"></div>
+        <div class="absolute -bottom-16 -left-16 w-32 h-32 bg-gradient-to-tr from-green-300 to-green-400 rounded-full opacity-15 float-animation" style="animation-delay: 1s;"></div>
+
+        <!-- Logo/Brand Section -->
+        <div class="text-center mb-10 relative z-10">
+            <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-green-500 to-green-600 rounded-full mb-6 shadow-xl glow-animation">
+                <i class="fas fa-user-tie text-white text-3xl"></i>
+            </div>
+            <h1 class="text-4xl font-['Playfair_Display'] font-bold text-gray-800 mb-3 tracking-wide">Employee Login</h1>
+            <p class="text-gray-600 text-lg">Sign in to your FastFix account</p>
+            <div class="mt-4 flex justify-center space-x-2">
+                <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse" style="animation-delay: 0.2s;"></div>
+                <div class="w-2 h-2 bg-green-600 rounded-full animate-pulse" style="animation-delay: 0.4s;"></div>
+            </div>
+        </div>
+
+        <!-- Error Message Container -->
+        <div id="error-message" class="hidden mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm font-medium">
+            <i class="fas fa-exclamation-triangle mr-2"></i>
+            <span id="error-text">Invalid credentials. Please try again.</span>
+        </div>
+
+        <form id="login-form" class="space-y-6 relative z-10">
+            <div class="relative group">
+                <i class="fas fa-envelope absolute left-4 top-1/2 transform -translate-y-1/2 text-green-400 group-focus-within:text-green-600 transition-colors"></i>
+                <input type="email" id="email" placeholder="Email Address" required
+                       class="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-green-100 focus:border-green-400 transition-all duration-300 bg-gray-50 focus:bg-white text-gray-700 placeholder-gray-400 shadow-sm">
+            </div>
+
+            <div class="relative group">
+                <i class="fas fa-lock absolute left-4 top-1/2 transform -translate-y-1/2 text-green-400 group-focus-within:text-green-600 transition-colors"></i>
+                <input type="password" id="password" placeholder="Password" required
+                       class="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-green-100 focus:border-green-400 transition-all duration-300 bg-gray-50 focus:bg-white text-gray-700 placeholder-gray-400 shadow-sm">
+            </div>
+
+            <div class="flex items-center justify-between">
+                <label class="flex items-center group cursor-pointer">
+                    <input type="checkbox" class="rounded border-2 border-gray-300 text-green-600 focus:ring-green-500 focus:ring-2 w-4 h-4">
+                    <span class="ml-3 text-sm text-gray-600 group-hover:text-gray-800 transition-colors">Remember me</span>
+                </label>
+            </div>
+
+            <button type="submit" id="login-btn"
+                    class="w-full bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:from-green-600 hover:via-green-700 hover:to-green-800 text-white py-4 rounded-2xl transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 font-bold text-lg relative overflow-hidden group">
+                <span class="relative z-10 flex items-center justify-center">
+                    <i class="fas fa-sign-in-alt mr-3"></i>
+                    <span id="btn-text">Sign In</span>
+                    <i class="fas fa-arrow-right ml-3 transform group-hover:translate-x-1 transition-transform"></i>
+                </span>
+                <div class="absolute inset-0 bg-gradient-to-r from-green-400 to-green-600 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+            </button>
+        </form>
+
+        <div class="mt-10 text-center relative z-10">
+            <p class="text-gray-500 text-sm">Don't have an account?
+                <a href="employee-register.html" class="text-green-600 hover:text-green-800 font-semibold ml-1 transition-colors duration-200 hover:underline">Sign up here</a>
+            </p>
+        </div>
+
+        <div class="mt-6 text-center relative z-10">
+            <p class="text-gray-500 text-sm">Are you a user?
+                <a href="login.html" class="text-blue-600 hover:text-blue-800 font-semibold ml-1 transition-colors duration-200 hover:underline">User Login</a>
+            </p>
+        </div>
+
+        <div class="mt-4 text-center relative z-10">
+            <p class="text-gray-500 text-sm">Are you an admin?
+                <a href="admin-login.html" class="text-red-600 hover:text-red-800 font-semibold ml-1 transition-colors duration-200 hover:underline">Admin Login</a>
+            </p>
+        </div>
+
+        <!-- Back to Home -->
+        <div class="mt-6 text-center relative z-10">
+            <a href="index.html" class="text-gray-500 hover:text-green-600 text-sm transition-colors">
+                <i class="fas fa-home mr-2"></i>Back to Home
+            </a>
+        </div>
+
+        <!-- Trust Badge -->
+        <div class="mt-6 flex justify-center">
+            <div class="flex items-center bg-green-50 px-4 py-2 rounded-full border border-green-200">
+                <i class="fas fa-shield-alt text-green-600 mr-2"></i>
+                <span class="text-green-700 text-xs font-semibold">Secure Login</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('login-form');
+        const errorMessage = document.getElementById('error-message');
+        const loginBtn = document.getElementById('login-btn');
+        const btnText = document.getElementById('btn-text');
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // Show loading state
+            loginBtn.disabled = true;
+            btnText.textContent = 'Signing in...';
+            loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-3"></i><span id="btn-text">Signing in...</span>';
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('http://localhost:5000/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password, role: 'employee' })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    const employee = data.user;
+                    // Success animation
+                    loginBtn.innerHTML = '<i class="fas fa-check mr-3"></i><span id="btn-text">Success!</span>';
+                    loginBtn.classList.add('bg-green-500', 'hover:bg-green-600');
+                    loginBtn.classList.remove('bg-gradient-to-r', 'from-green-500', 'via-green-600', 'to-green-700', 'hover:from-green-600', 'hover:via-green-700', 'hover:to-green-800');
+
+                    setTimeout(() => {
+                        localStorage.setItem('employeeLoggedIn', 'true');
+                        localStorage.setItem('employeeEmail', email);
+                        localStorage.setItem('employeeName', employee.name);
+                        localStorage.setItem('employeeService', employee.service || 'All Services');
+                        window.location.href = 'employee-dashboard.html';
+                    }, 1000);
+                } else {
+                    const errorData = await response.json();
+                    document.getElementById('error-text').textContent = errorData.error || 'Invalid credentials. Please try again.';
+
+                    // Show error
+                    errorMessage.classList.remove('hidden');
+                    errorMessage.classList.add('animate-pulse');
+
+                    // Reset button
+                    loginBtn.disabled = false;
+                    loginBtn.innerHTML = '<i class="fas fa-sign-in-alt mr-3"></i><span id="btn-text">Sign In</span><i class="fas fa-arrow-right ml-3 transform group-hover:translate-x-1 transition-transform"></i>';
+                    loginBtn.classList.remove('bg-green-500', 'hover:bg-green-600');
+                    loginBtn.classList.add('bg-gradient-to-r', 'from-green-500', 'via-green-600', 'to-green-700', 'hover:from-green-600', 'hover:via-green-700', 'hover:to-green-800');
+
+                    // Hide error after 5 seconds
+                    setTimeout(() => {
+                        errorMessage.classList.add('hidden');
+                        errorMessage.classList.remove('animate-pulse');
+                    }, 5000);
+                }
+            } catch (err) {
+                console.error(err);
+                document.getElementById('error-text').textContent = 'Server connection error. Please try again later.';
+                errorMessage.classList.remove('hidden');
+                
+                // Reset button
+                loginBtn.disabled = false;
+                loginBtn.innerHTML = '<i class="fas fa-sign-in-alt mr-3"></i><span id="btn-text">Sign In</span><i class="fas fa-arrow-right ml-3 transform group-hover:translate-x-1 transition-transform"></i>';
+            }
+        });
+
+        // Add input focus effects
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('ring-2', 'ring-green-200');
+            });
+            input.addEventListener('blur', function() {
+                this.parentElement.classList.remove('ring-2', 'ring-green-200');
+            });
+        });
+    </script>
+</body>
+</html>

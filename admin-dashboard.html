@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - FastFix</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .sidebar { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .card-gradient { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .stat-card { transition: all 0.3s ease; }
+        .stat-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div class="sidebar w-64 text-white p-6 fixed h-full">
+            <div class="flex items-center mb-8">
+                <i class="fas fa-crown text-yellow-300 text-2xl mr-3"></i>
+                <h1 class="text-2xl font-bold">FastFix Admin</h1>
+            </div>
+            <nav class="space-y-4">
+                <a href="#overview" class="nav-link flex items-center p-3 rounded-lg hover:bg-white hover:bg-opacity-20 transition">
+                    <i class="fas fa-tachometer-alt mr-3"></i> Overview
+                </a>
+                <a href="#users" class="nav-link flex items-center p-3 rounded-lg hover:bg-white hover:bg-opacity-20 transition">
+                    <i class="fas fa-users mr-3"></i> Users
+                </a>
+                <a href="#employees" class="nav-link flex items-center p-3 rounded-lg hover:bg-white hover:bg-opacity-20 transition">
+                    <i class="fas fa-user-tie mr-3"></i> Employees
+                </a>
+                <a href="#services" class="nav-link flex items-center p-3 rounded-lg hover:bg-white hover:bg-opacity-20 transition">
+                    <i class="fas fa-tools mr-3"></i> Services
+                </a>
+                <a href="#bookings" class="nav-link flex items-center p-3 rounded-lg hover:bg-white hover:bg-opacity-20 transition">
+                    <i class="fas fa-calendar-check mr-3"></i> Bookings
+                </a>
+                <a href="#assignments" class="nav-link flex items-center p-3 rounded-lg hover:bg-white hover:bg-opacity-20 transition">
+                    <i class="fas fa-user-check mr-3"></i> Assignments
+                </a>
+                <a href="#changepassword" class="nav-link flex items-center p-3 rounded-lg hover:bg-white hover:bg-opacity-20 transition">
+                    <i class="fas fa-key mr-3"></i> Change Password
+                </a>
+            </nav>
+            <div class="absolute bottom-6 left-6">
+                <button onclick="logout()" class="flex items-center p-3 rounded-lg hover:bg-white hover:bg-opacity-20 transition">
+                    <i class="fas fa-sign-out-alt mr-3"></i> Logout
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 ml-64 p-8">
+            <!-- Header -->
+            <header class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-800">Dashboard Overview</h2>
+                <p class="text-gray-600 mt-2">Manage your business efficiently</p>
+            </header>
+
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8" id="stats-cards">
+                <!-- Stats will be loaded here -->
+            </div>
+
+            <!-- Content Sections -->
+            <div id="content-sections">
+                <!-- Overview -->
+                <section id="overview-section" class="mb-8">
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center">
+                            <i class="fas fa-chart-line text-blue-600 mr-2"></i> Business Analytics
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-green-600" id="total-revenue">₹0</div>
+                                <div class="text-gray-600">Total Revenue</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-blue-600" id="active-bookings">0</div>
+                                <div class="text-gray-600">Active Bookings</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-purple-600" id="total-users">0</div>
+                                <div class="text-gray-600">Total Users</div>
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <canvas id="bookingsChart" height="100"></canvas>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Users -->
+                <section id="users-section" class="mb-8 hidden">
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center">
+                            <i class="fas fa-users text-blue-600 mr-2"></i> Registered Users
+                        </h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead>
+                                    <tr class="bg-gray-50">
+                                        <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700">#</th>
+                                        <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700">Name</th>
+                                        <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700">Email</th>
+                                        <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700">Mobile</th>
+                                        <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700">Address</th>
+                                        <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700">Total Bookings</th>
+                                        <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700">Status</th>
+                                        <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="users-table-body">
+                                    <!-- Users will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="no-users" class="hidden text-center py-8 text-gray-500">
+                            No users registered yet.
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Employees -->
+                <section id="employees-section" class="mb-8 hidden">
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center">
+                            <i class="fas fa-user-tie text-green-600 mr-2"></i> Manage Employees
+                        </h3>
+                        <form id="add-employee-form" class="mb-6">
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                                <input type="text" id="emp-name" placeholder="Employee Name" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                                <input type="email" id="emp-email" placeholder="Email" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                                <input type="password" id="emp-password" placeholder="Password" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                                <select id="emp-service" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                                    <option value="">Select Service</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="mt-4 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-6 py-2 rounded-lg font-semibold transition">Add Employee</button>
+                        </form>
+                        <div class="space-y-3" id="employee-list"></div>
+                    </div>
+                </section>
+
+                <!-- Services -->
+                <section id="services-section" class="mb-8 hidden">
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center">
+                            <i class="fas fa-tools text-orange-600 mr-2"></i> Manage Services
+                        </h3>
+                        <form id="add-service-form" class="mb-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <input type="text" id="add-svc-name" placeholder="Service Name" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
+                                <input type="text" id="add-svc-price" placeholder="Price (e.g. ₹499)" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
+                                <input type="text" id="add-svc-duration" placeholder="Duration (e.g. 1-2 hours)" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
+                                <input type="text" id="add-svc-features" placeholder="Features (Comma separated)" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
+                                <textarea id="add-svc-desc" placeholder="Short Description" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 md:col-span-2" rows="2"></textarea>
+                                <textarea id="add-svc-detailed-desc" placeholder="Detailed Description (Process/Overview)" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 md:col-span-2" rows="4"></textarea>
+                            </div>
+                            <button type="submit" class="mt-4 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 py-2 rounded-lg font-semibold transition">Add Service</button>
+                        </form>
+                        <div class="space-y-3" id="service-list"></div>
+                    </div>
+                </section>
+
+                <section id="bookings-section" class="mb-8 hidden">
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center">
+                            <i class="fas fa-calendar-check text-blue-600 mr-2"></i> Client Bookings
+                        </h3>
+                        <div class="space-y-4" id="booking-list"></div>
+                    </div>
+                </section>
+
+                <!-- Assignments -->
+                <section id="assignments-section" class="mb-8 hidden">
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center">
+                            <i class="fas fa-user-check text-purple-600 mr-2"></i> Assign Work
+                        </h3>
+                        <form id="assign-work-form" class="mb-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <select id="booking-select" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <option value="">Select Booking</option>
+                                </select>
+                                <select id="employee-select" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></select>
+                            </div>
+                            <button type="submit" class="mt-4 bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white px-6 py-2 rounded-lg font-semibold transition">Assign Work</button>
+                        </form>
+                        <div id="selected-booking-details" class="mt-4 p-4 bg-gray-50 rounded-lg hidden">
+                            <h4 class="font-semibold mb-3">Client Details:</h4>
+                            <div id="client-info" class="space-y-2"></div>
+                        </div>
+                        <div class="mt-6 space-y-3" id="assignment-list"></div>
+                    </div>
+                </section>
+
+                <!-- Change Password -->
+                <section id="changepassword-section" class="mb-8 hidden">
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center">
+                            <i class="fas fa-key text-red-600 mr-2"></i> Change Admin Password
+                        </h3>
+                        <form id="change-password-form" class="max-w-md">
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Current Password</label>
+                                <input type="password" id="current-password" required placeholder="Enter current password"
+                                       class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">New Password</label>
+                                <input type="password" id="new-password" required placeholder="Enter new password"
+                                       class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Confirm New Password</label>
+                                <input type="password" id="confirm-password" required placeholder="Confirm new password"
+                                       class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            <button type="submit" class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-6 py-2 rounded-lg font-semibold transition">
+                                Update Password
+                            </button>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Service Modal -->
+    <div id="edit-service-modal" class="fixed inset-0 bg-black/60 z-[60] hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform transition-all duration-300 slide-in-up">
+            <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50">
+                <h3 class="text-2xl font-bold text-gray-900">Edit Service</h3>
+                <button onclick="closeEditServiceModal()" class="text-gray-400 hover:text-red-500 transition-colors">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="p-6">
+                <form id="edit-service-form">
+                    <input type="hidden" id="edit-svc-id">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="space-y-1">
+                            <label class="text-sm text-gray-600 font-medium">Service Name</label>
+                            <input type="text" id="edit-svc-name" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-sm text-gray-600 font-medium">Price</label>
+                            <input type="text" id="edit-svc-price" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-sm text-gray-600 font-medium">Duration</label>
+                            <input type="text" id="edit-svc-duration" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-sm text-gray-600 font-medium">Features (Comma Separated)</label>
+                            <input type="text" id="edit-svc-features" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div class="space-y-1 md:col-span-2">
+                            <label class="text-sm text-gray-600 font-medium">Short Description</label>
+                            <textarea id="edit-svc-desc" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" rows="2"></textarea>
+                        </div>
+                        <div class="space-y-1 md:col-span-2">
+                            <label class="text-sm text-gray-600 font-medium">Detailed Process / Overview</label>
+                            <textarea id="edit-svc-detailed-desc" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="mt-6 flex justify-end space-x-3">
+                        <button type="button" onclick="closeEditServiceModal()" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition">Cancel</button>
+                        <button type="submit" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-2 rounded-lg font-semibold transition">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin-script.js"></script>
+</body>
+</html>

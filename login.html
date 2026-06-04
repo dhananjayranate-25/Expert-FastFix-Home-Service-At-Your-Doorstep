@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - FastFix</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.6); }
+        }
+        .float-animation { animation: float 3s ease-in-out infinite; }
+        .glow-animation { animation: pulse-glow 2s ease-in-out infinite; }
+        .login-card { animation: slideIn 0.8s ease-out; }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="font-['Roboto'] bg-gradient-to-br from-blue-50 via-gray-50 to-blue-100 min-h-screen flex items-center justify-center p-4 overflow-hidden">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-5">
+        <div class="absolute top-20 left-20 w-32 h-32 border-2 border-blue-300 rounded-full"></div>
+        <div class="absolute top-40 right-32 w-24 h-24 border-2 border-blue-400 rounded-full"></div>
+        <div class="absolute bottom-32 left-40 w-20 h-20 border-2 border-blue-500 rounded-full"></div>
+        <div class="absolute bottom-20 right-20 w-16 h-16 border-2 border-blue-600 rounded-full"></div>
+    </div>
+
+    <div class="login-card bg-white/95 backdrop-blur-lg p-10 rounded-3xl shadow-2xl w-full max-w-md border border-blue-100/50 relative overflow-hidden">
+        <!-- Animated Background Elements -->
+        <div class="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-blue-200 to-blue-300 rounded-full opacity-20 float-animation"></div>
+        <div class="absolute -bottom-16 -left-16 w-32 h-32 bg-gradient-to-tr from-blue-300 to-blue-400 rounded-full opacity-15 float-animation" style="animation-delay: 1s;"></div>
+
+        <!-- Logo/Brand Section -->
+        <div class="text-center mb-10 relative z-10">
+            <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full mb-6 shadow-xl glow-animation">
+                <i class="fas fa-user-circle text-white text-3xl"></i>
+            </div>
+            <h1 class="text-4xl font-['Playfair_Display'] font-bold text-gray-800 mb-3 tracking-wide">Welcome Back</h1>
+            <p class="text-gray-600 text-lg">Sign in to your FastFix account</p>
+            <div class="mt-4 flex justify-center space-x-2">
+                <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse" style="animation-delay: 0.2s;"></div>
+                <div class="w-2 h-2 bg-blue-600 rounded-full animate-pulse" style="animation-delay: 0.4s;"></div>
+            </div>
+        </div>
+
+        <!-- Error Message Container -->
+        <div id="error-message" class="hidden mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm font-medium">
+            <i class="fas fa-exclamation-triangle mr-2"></i>
+            <span id="error-text">Invalid credentials. Please try again.</span>
+        </div>
+
+        <form id="login-form" class="space-y-6 relative z-10">
+            <div class="relative group">
+                <i class="fas fa-envelope absolute left-4 top-1/2 transform -translate-y-1/2 text-blue-400 group-focus-within:text-blue-600 transition-colors"></i>
+                <input type="email" id="email" placeholder="Email Address" required
+                       class="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-400 transition-all duration-300 bg-gray-50 focus:bg-white text-gray-700 placeholder-gray-400 shadow-sm">
+            </div>
+
+            <div class="relative group">
+                <i class="fas fa-lock absolute left-4 top-1/2 transform -translate-y-1/2 text-blue-400 group-focus-within:text-blue-600 transition-colors"></i>
+                <input type="password" id="password" placeholder="Password" required
+                       class="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-400 transition-all duration-300 bg-gray-50 focus:bg-white text-gray-700 placeholder-gray-400 shadow-sm">
+            </div>
+
+            <div class="flex items-center justify-between">
+                <label class="flex items-center group cursor-pointer">
+                    <input type="checkbox" class="rounded border-2 border-gray-300 text-blue-600 focus:ring-blue-500 focus:ring-2 w-4 h-4">
+                    <span class="ml-3 text-sm text-gray-600 group-hover:text-gray-800 transition-colors">Remember me</span>
+                </label>
+                <a href="#" onclick="showChangePasswordModal()" class="text-sm text-blue-600 hover:text-blue-800 font-semibold transition-all duration-200 hover:underline">Change Password</a>
+            </div>
+
+            <button type="submit" id="login-btn"
+                    class="w-full bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:from-blue-600 hover:via-blue-700 hover:to-blue-800 text-white py-4 rounded-2xl transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 font-bold text-lg relative overflow-hidden group">
+                <span class="relative z-10 flex items-center justify-center">
+                    <i class="fas fa-sign-in-alt mr-3"></i>
+                    <span id="btn-text">Sign In</span>
+                    <i class="fas fa-arrow-right ml-3 transform group-hover:translate-x-1 transition-transform"></i>
+                </span>
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+            </button>
+        </form>
+
+        <div class="mt-10 text-center relative z-10">
+            <p class="text-gray-500 text-sm">Don't have an account?
+                <a href="register.html" class="text-blue-600 hover:text-blue-800 font-semibold ml-1 transition-colors duration-200 hover:underline">Sign up here</a>
+            </p>
+        </div>
+
+        <!-- Employee Login Link -->
+        <div class="mt-6 text-center relative z-10">
+            <p class="text-gray-500 text-sm">Are you an employee?
+                <a href="employee-login.html" class="text-green-600 hover:text-green-800 font-semibold ml-1 transition-colors duration-200 hover:underline">Employee Login</a>
+            </p>
+        </div>
+
+        <!-- Back to Home -->
+        <div class="mt-6 text-center relative z-10">
+            <a href="index.html" class="text-gray-500 hover:text-blue-600 text-sm transition-colors">
+                <i class="fas fa-home mr-2"></i>Back to Home
+            </a>
+        </div>
+
+        <!-- Trust Badge -->
+        <div class="mt-6 flex justify-center">
+            <div class="flex items-center bg-green-50 px-4 py-2 rounded-full border border-green-200">
+                <i class="fas fa-shield-alt text-green-600 mr-2"></i>
+                <span class="text-green-700 text-xs font-semibold">Secure Login</span>
+            </div>
+        </div>
+
+        <!-- Services Preview -->
+        <div class="mt-8 pt-6 border-t border-gray-200">
+            <p class="text-center text-gray-500 text-sm mb-4">Explore Our Services</p>
+            <div class="grid grid-cols-4 gap-3" id="login-services-grid"></div>
+            <div class="text-center mt-4">
+                <a href="#services" onclick="showAllServices()" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                    View All Services <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div id="change-password-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full mx-4 shadow-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">Change Password</h3>
+                <button onclick="closeChangePasswordModal()" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <form id="change-password-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                    <input type="email" id="cp-email" required placeholder="Enter your email"
+                           class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Current Password</label>
+                    <input type="password" id="cp-current-password" required placeholder="Enter current password"
+                           class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">New Password</label>
+                    <input type="password" id="cp-new-password" required placeholder="Enter new password"
+                           class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Confirm New Password</label>
+                    <input type="password" id="cp-confirm-password" required placeholder="Confirm new password"
+                           class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300">
+                    Update Password
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('login-form');
+        const errorMessage = document.getElementById('error-message');
+        const loginBtn = document.getElementById('login-btn');
+        const btnText = document.getElementById('btn-text');
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // Show loading state
+            loginBtn.disabled = true;
+            btnText.textContent = 'Signing in...';
+            loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-3"></i><span id="btn-text">Signing in...</span>';
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('http://localhost:5000/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password, role: 'user' })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    // Success animation
+                    loginBtn.innerHTML = '<i class="fas fa-check mr-3"></i><span id="btn-text">Success!</span>';
+                    loginBtn.classList.add('bg-green-500', 'hover:bg-green-600');
+                    loginBtn.classList.remove('bg-gradient-to-r', 'from-blue-500', 'via-blue-600', 'to-blue-700', 'hover:from-blue-600', 'hover:via-blue-700', 'hover:to-blue-800');
+
+                    setTimeout(() => {
+                        localStorage.setItem('clientLoggedIn', 'true');
+                        localStorage.setItem('clientEmail', email);
+                        localStorage.setItem('clientName', data.user.name);
+                        localStorage.setItem('clientMobile', data.user.mobile);
+                        window.location.href = 'index.html';
+                    }, 1000);
+                } else {
+                    const errorData = await response.json();
+                    document.getElementById('error-text').textContent = errorData.error || 'Invalid credentials. Please try again.';
+                    
+                    // Show error
+                    errorMessage.classList.remove('hidden');
+                    errorMessage.classList.add('animate-pulse');
+
+                    // Reset button
+                    loginBtn.disabled = false;
+                    loginBtn.innerHTML = '<i class="fas fa-sign-in-alt mr-3"></i><span id="btn-text">Sign In</span><i class="fas fa-arrow-right ml-3 transform group-hover:translate-x-1 transition-transform"></i>';
+                    loginBtn.classList.remove('bg-green-500', 'hover:bg-green-600');
+                    loginBtn.classList.add('bg-gradient-to-r', 'from-blue-500', 'via-blue-600', 'to-blue-700', 'hover:from-blue-600', 'hover:via-blue-700', 'hover:to-blue-800');
+
+                    // Hide error after 5 seconds
+                    setTimeout(() => {
+                        errorMessage.classList.add('hidden');
+                        errorMessage.classList.remove('animate-pulse');
+                    }, 5000);
+                }
+            } catch (err) {
+                console.error(err);
+                document.getElementById('error-text').textContent = 'Server connection error. Please try again later.';
+                errorMessage.classList.remove('hidden');
+                
+                // Reset button
+                loginBtn.disabled = false;
+                loginBtn.innerHTML = '<i class="fas fa-sign-in-alt mr-3"></i><span id="btn-text">Sign In</span><i class="fas fa-arrow-right ml-3 transform group-hover:translate-x-1 transition-transform"></i>';
+            }
+        });
+
+        // Change Password Functions
+        function showChangePasswordModal() {
+            document.getElementById('change-password-modal').classList.remove('hidden');
+        }
+
+        function closeChangePasswordModal() {
+            document.getElementById('change-password-modal').classList.add('hidden');
+            document.getElementById('change-password-form').reset();
+        }
+
+        document.getElementById('change-password-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('cp-email').value;
+            const currentPassword = document.getElementById('cp-current-password').value;
+            const newPassword = document.getElementById('cp-new-password').value;
+            const confirmPassword = document.getElementById('cp-confirm-password').value;
+
+            if (newPassword !== confirmPassword) {
+                alert('New passwords do not match!');
+                return;
+            }
+
+            if (newPassword.length < 4) {
+                alert('Password must be at least 4 characters!');
+                return;
+            }
+
+            const clients = JSON.parse(localStorage.getItem('clients') || '[]');
+            const clientIndex = clients.findIndex(c => c.email === email);
+
+            if (clientIndex === -1) {
+                alert('Email not found! Please register first.');
+                return;
+            }
+
+            if (clients[clientIndex].password !== currentPassword) {
+                alert('Current password is incorrect!');
+                return;
+            }
+
+            clients[clientIndex].password = newPassword;
+            localStorage.setItem('clients', JSON.stringify(clients));
+
+            alert('Password changed successfully! Please login with new password.');
+            closeChangePasswordModal();
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('change-password-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.add('hidden');
+            }
+        });
+
+        // Add input focus effects
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('ring-2', 'ring-blue-200');
+            });
+            input.addEventListener('blur', function() {
+                this.parentElement.classList.remove('ring-2', 'ring-blue-200');
+            });
+        });
+
+        // Services Data
+        const services = [
+            { name: 'Cleaning', desc: 'Professional cleaning services.', icon: 'fas fa-broom', image: 'https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=400&h=300&fit=crop', detailedDesc: 'Our professional cleaning service includes deep cleaning of all rooms, kitchen sanitization, bathroom cleaning, dusting, vacuuming, and floor mopping. We use eco-friendly products and ensure a spotless home.', features: ['Deep cleaning', 'Eco-friendly products', 'Sanitization', 'Floor care', 'Dusting & vacuuming'], price: '₹499', duration: '2-4 hours' },
+            { name: 'Plumbing', desc: 'Expert plumbing repairs.', icon: 'fas fa-wrench', image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=400&h=300&fit=crop', detailedDesc: 'Our certified plumbers handle all types of plumbing issues including pipe repairs, leak fixes, toilet installations, faucet repairs, and drainage problems. 24/7 emergency service available.', features: ['Pipe repairs', 'Leak fixing', 'Installation', 'Emergency service', 'Drainage solutions'], price: '₹299', duration: '1-3 hours' },
+            { name: 'Electrical', desc: 'Safe electrical services.', icon: 'fas fa-bolt', image: 'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=400&h=300&fit=crop', detailedDesc: 'Licensed electricians for all electrical work including wiring, switch installations, outlet repairs, ceiling fan installations, and electrical safety inspections.', features: ['Wiring & repairs', 'Switch installations', 'Safety inspections', 'Appliance connections', 'Emergency repairs'], price: '₹399', duration: '1-2 hours' },
+            { name: 'Gardening', desc: 'Lawn and garden care.', icon: 'fas fa-leaf', image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=300&fit=crop', detailedDesc: 'Complete garden maintenance including lawn mowing, trimming, weeding, fertilization, pest control, and seasonal planting. Transform your outdoor space.', features: ['Lawn mowing', 'Trimming & pruning', 'Weeding', 'Fertilization', 'Seasonal planting'], price: '₹599', duration: '2-6 hours' },
+            { name: 'Painting', desc: 'Interior and exterior painting.', icon: 'fas fa-paint-roller', image: 'https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=400&h=300&fit=crop', detailedDesc: 'Professional painting services for interior walls, exterior surfaces, woodwork, and ceilings. We use premium paints and ensure perfect finish.', features: ['Interior painting', 'Exterior painting', 'Woodwork finishing', 'Color consultation', 'Premium paints'], price: '₹899', duration: '4-8 hours' },
+            { name: 'Carpentry', desc: 'Custom woodwork.', icon: 'fas fa-hammer', image: 'https://images.unsplash.com/photo-1503387837-b154d5074bd2?w=400&h=300&fit=crop', detailedDesc: 'Expert carpentry for furniture repair, custom woodwork, door installations, shelving, and structural repairs. Handcrafted quality work.', features: ['Furniture repair', 'Custom woodwork', 'Door installation', 'Shelving', 'Structural repairs'], price: '₹699', duration: '2-6 hours' },
+            { name: 'HVAC', desc: 'Heating and cooling.', icon: 'fas fa-snowflake', image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop', detailedDesc: 'Complete HVAC services including AC repair, heating system maintenance, duct cleaning, thermostat installation, and energy efficiency upgrades.', features: ['AC repair', 'Heating maintenance', 'Duct cleaning', 'Thermostat installation', 'Energy upgrades'], price: '₹799', duration: '2-4 hours' },
+            { name: 'Roofing', desc: 'Roof repairs.', icon: 'fas fa-home', image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=300&fit=crop', detailedDesc: 'Professional roofing services including repairs, replacements, inspections, and maintenance. Weatherproof your home with expert craftsmanship.', features: ['Roof repairs', 'Replacements', 'Inspections', 'Maintenance', 'Weatherproofing'], price: '₹1299', duration: '4-8 hours' }
+        ];
+
+        // Load services in login page
+        document.getElementById('login-services-grid').innerHTML = services.map((service, index) => `
+            <div class="cursor-pointer group" onclick="showServiceDetails(${index})">
+                <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center mx-auto mb-2 shadow-md group-hover:shadow-lg transition-all duration-300 group-hover:scale-110">
+                    <i class="${service.icon} text-white text-lg"></i>
+                </div>
+                <p class="text-xs text-gray-600 text-center truncate">${service.name}</p>
+            </div>
+        `).join('');
+
+        function showServiceDetails(index) {
+            const service = services[index];
+            const modalHTML = `
+                <div id="service-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+                    <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+                        <div class="relative">
+                            <div class="relative h-64 md:h-80">
+                                <img src="${service.image}" alt="${service.name}" class="w-full h-full object-cover rounded-t-2xl">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-t-2xl"></div>
+                                <button onclick="closeServiceModal()" class="absolute top-4 right-4 bg-white/20 backdrop-blur-sm text-white p-2 rounded-full hover:bg-white/30 transition">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                                <div class="absolute bottom-6 left-6 text-white">
+                                    <div class="flex items-center mb-2">
+                                        <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mr-3">
+                                            <i class="${service.icon} text-xl"></i>
+                                        </div>
+                                        <h2 class="text-3xl font-bold">${service.name}</h2>
+                                    </div>
+                                    <div class="flex items-center space-x-4 text-sm">
+                                        <span class="bg-green-500 px-3 py-1 rounded-full font-semibold">${service.price}</span>
+                                        <span class="bg-blue-500 px-3 py-1 rounded-full font-semibold">${service.duration}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-8">
+                                <div class="mb-8">
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Service Overview</h3>
+                                    <p class="text-gray-600 text-lg leading-relaxed">${service.detailedDesc}</p>
+                                </div>
+                                <div class="mb-8">
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-4">What's Included</h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                        ${service.features.map(feature => `
+                                            <div class="flex items-center bg-blue-50 p-3 rounded-lg">
+                                                <i class="fas fa-check-circle text-blue-600 mr-3"></i>
+                                                <span class="text-gray-700">${feature}</span>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                                <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-xl">
+                                    <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                                        <div>
+                                            <h4 class="text-xl font-bold text-gray-900 mb-2">Service Pricing</h4>
+                                            <p class="text-gray-600">Starting from ${service.price} • ${service.duration}</p>
+                                        </div>
+                                        <button onclick="window.location.href='register.html'" class="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white px-8 py-3 rounded-lg font-semibold transition shadow-lg transform hover:scale-105 mt-4 md:mt-0">
+                                            <i class="fas fa-user-plus mr-2"></i>Register to Book
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeServiceModal() {
+            const modal = document.getElementById('service-modal');
+            if (modal) {
+                modal.remove();
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function showAllServices() {
+            window.location.href = 'index.html#services';
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(e) {
+            const modal = document.getElementById('service-modal');
+            if (modal && e.target === modal) {
+                closeServiceModal();
+            }
+        });
+    </script>
+</body>
+</html>

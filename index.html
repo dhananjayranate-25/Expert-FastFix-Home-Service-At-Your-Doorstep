@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastFix - Expert Professional Home Services, Book Online</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #ffffff;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+        }
+        .spinner {
+            width: 50px; height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Premium Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.4); }
+            50% { box-shadow: 0 0 50px rgba(59, 130, 246, 0.8); }
+        }
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .float-animation { animation: float 6s ease-in-out infinite; }
+        .glow-animation { animation: pulse-glow 3s ease-in-out infinite; }
+        .slide-in-up { animation: slideInUp 0.8s ease-out; }
+        .fade-in-scale { animation: fadeInScale 0.6s ease-out; }
+        .gradient-shift { animation: gradientShift 8s ease infinite; }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(45deg, #3b82f6, #1d4ed8); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(45deg, #1d4ed8, #1e40af); }
+
+        /* Smooth Scroll Animation */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Advanced Scroll Animations */
+        .scroll-section {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-section.left {
+            opacity: 0;
+            transform: translateX(-80px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-section.left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scroll-section.right {
+            opacity: 0;
+            transform: translateX(80px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-section.right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scroll-section.scale {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-section.scale.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Hero Section Animation */
+        .hero-content > * {
+            opacity: 0;
+            animation: heroFadeIn 1s ease-out forwards;
+        }
+        
+        .hero-content > *:nth-child(1) { animation-delay: 0.2s; }
+        .hero-content > *:nth-child(2) { animation-delay: 0.4s; }
+        .hero-content > *:nth-child(3) { animation-delay: 0.6s; }
+        .hero-content > *:nth-child(4) { animation-delay: 0.8s; }
+        .hero-content > *:nth-child(5) { animation-delay: 1s; }
+
+        @keyframes heroFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Counter Animation */
+        .counter {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease-out;
+        }
+        
+        .counter.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Enhanced Button Animations */
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: all 0.5s ease;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Service Card Hover Effects */
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+        .service-card:hover {
+            transform: translateY(-15px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        /* Testimonial Card Animation */
+        .testimonial-card {
+            transition: all 0.4s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* Icon Hover Animation */
+        .icon-box {
+            transition: all 0.3s ease;
+        }
+        
+        .icon-box:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Step Card Animation */
+        .step-card {
+            transition: all 0.4s ease;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Form Input Focus Animation */
+        .input-animated {
+            transition: all 0.3s ease;
+        }
+        
+        .input-animated:focus {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+        }
+
+        /* Particle Background */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 10s infinite linear;
+        }
+        .particle:nth-child(odd) { animation-duration: 8s; }
+        .particle:nth-child(3n) { animation-duration: 12s; }
+    </style>
+</head>
+<body class="bg-gray-50 overflow-x-hidden">
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="text-center">
+            <div class="spinner mx-auto mb-4"></div>
+            <h2 class="text-xl font-bold text-gray-800">FastFix</h2>
+            <p class="text-sm text-gray-500">Loading experience...</p>
+        </div>
+    </div>
+
+    <!-- Google Translate Script -->
+    <script type="text/javascript" defer>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en', 
+                includedLanguages: 'mr,hi,en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Premium Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <div class="flex items-center group cursor-pointer">
+                    <div class="w-12 h-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center mr-3 shadow-lg group-hover:shadow-xl transition-all duration-300">
+                        <i class="fas fa-tools text-white text-xl"></i>
+                    </div>
+                    <div class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                        FastFix
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="#home" class="relative text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 group">
+                        <span class="relative z-10">Home</span>
+                        <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 group-hover:w-full transition-all duration-300"></div>
+                    </a>
+                    <a href="#services" class="relative text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 group">
+                        <span class="relative z-10">Services</span>
+                        <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 group-hover:w-full transition-all duration-300"></div>
+                    </a>
+                    <a href="#about" class="relative text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 group">
+                        <span class="relative z-10">About</span>
+                        <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 group-hover:w-full transition-all duration-300"></div>
+                    </a>
+                    <a href="#testimonials" class="relative text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 group">
+                        <span class="relative z-10">Reviews</span>
+                        <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 group-hover:w-full transition-all duration-300"></div>
+                    </a>
+                    <a href="#contact" class="relative text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 group">
+                        <span class="relative z-10">Contact</span>
+                        <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 group-hover:w-full transition-all duration-300"></div>
+                    </a>
+
+                    <!-- Phone -->
+                    <div class="flex items-center bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group">
+                        <i class="fas fa-phone mr-2 group-hover:animate-pulse"></i>
+                        <span class="font-semibold">93**13**60</span>
+                    </div>
+
+                    <!-- Language Widget -->
+                    <div id="google_translate_element" class="mt-1 mr-2"></div>
+
+                    <!-- Auth Buttons -->
+                    <div id="user-info" class="flex items-center space-x-3">
+                        <a href="login.html" class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-6 py-2.5 rounded-full font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300">
+                            <i class="fas fa-sign-in-alt mr-2"></i>Login
+                        </a>
+                    </div>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="lg:hidden text-gray-700 hover:text-blue-600 p-2 rounded-lg hover:bg-blue-50 transition-all duration-300">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden lg:hidden pb-6 border-t border-white/20 pt-6 space-y-4">
+                <a href="#home" class="block py-3 px-4 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-300">Home</a>
+                <a href="#services" class="block py-3 px-4 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-300">Services</a>
+                <a href="#about" class="block py-3 px-4 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-300">About</a>
+                <a href="#testimonials" class="block py-3 px-4 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-300">Reviews</a>
+                <a href="#contact" class="block py-3 px-4 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-300">Contact</a>
+                <a href="tel:8087611222" class="block py-3 px-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-lg text-center font-semibold">
+                    <i class="fas fa-phone mr-2"></i>93**13**60
+                </a>
+                <div id="mobile-user-info" class="flex space-x-3 pt-4">
+                    <a href="login.html" class="flex-1 bg-gradient-to-r from-green-500 to-emerald-600 text-white py-3 rounded-lg text-center font-medium">Login</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden scroll-section visible">
+        <!-- Animated Background -->
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 gradient-shift">
+            <div class="particles">
+                <div class="particle w-2 h-2 top-1/4 left-1/4"></div>
+                <div class="particle w-3 h-3 top-1/3 right-1/4"></div>
+                <div class="particle w-1 h-1 top-1/2 left-1/3"></div>
+                <div class="particle w-2 h-2 top-2/3 right-1/3"></div>
+                <div class="particle w-4 h-4 bottom-1/4 left-1/4"></div>
+                <div class="particle w-2 h-2 bottom-1/3 right-1/4"></div>
+            </div>
+        </div>
+
+        <!-- Floating Elements -->
+        <div class="absolute top-20 left-20 w-32 h-32 bg-white/10 rounded-full float-animation"></div>
+        <div class="absolute top-40 right-32 w-24 h-24 bg-white/10 rounded-full float-animation" style="animation-delay: 2s;"></div>
+        <div class="absolute bottom-32 left-40 w-20 h-20 bg-white/10 rounded-full float-animation" style="animation-delay: 4s;"></div>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 text-center text-white max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 slide-in-up">
+            <div class="mb-8">
+                <span class="inline-block bg-white/20 backdrop-blur-sm px-6 py-2 rounded-full text-sm font-medium mb-6">
+                    <i class="fas fa-star text-yellow-300 mr-2"></i>Trusted by 50+ Happy Customers
+                </span>
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight">
+                    Expert <span class="bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent"> FastFix</span><br>
+                    <span class="text-4xl md:text-6xl lg:text-7xl font-light"> Home Service At Your Doorstep</span>  
+                </h1>
+                <p class="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed">
+                    Professional home maintenance solutions at your doorstep.
+                    Book online and get expert service within 24 hours.
+                </p>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                <a href="#services" class="group bg-white text-blue-600 px-8 py-4 rounded-full font-bold text-lg shadow-2xl hover:shadow-white/25 transform hover:-translate-y-1 transition-all duration-300 btn-primary">
+                    <i class="fas fa-tools mr-3 group-hover:animate-bounce"></i>
+                    Explore Services
+                    <i class="fas fa-arrow-right ml-3 group-hover:translate-x-2 transition-transform"></i>
+                </a>
+                <a href="tel:93**13**60" class="group bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-blue-600 transition-all duration-300 hover:scale-105">
+                    <i class="fas fa-phone mr-3 group-hover:animate-pulse"></i>
+                    Call Now
+                </a>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto counter">
+                <div class="text-center fade-in-scale" style="animation-delay: 0.2s;">
+                    <div class="text-3xl md:text-4xl font-black text-white mb-2 counter-value" data-target="50">0</div>
+                    <div class="text-blue-100 text-sm md:text-base">Happy Customers</div>
+                </div>
+                <div class="text-center fade-in-scale" style="animation-delay: 0.4s;">
+                    <div class="text-3xl md:text-4xl font-black text-white mb-2 counter-value" data-target="50">0</div>
+                    <div class="text-blue-100 text-sm md:text-base">Expert Technicians</div>
+                </div>
+                <div class="text-center fade-in-scale" style="animation-delay: 0.6s;">
+                    <div class="text-3xl md:text-4xl font-black text-white mb-2">24/7</div>
+                    <div class="text-blue-100 text-sm md:text-base">Support Available</div>
+                </div>
+                <div class="text-center fade-in-scale" style="animation-delay: 0.8s;">
+                    <div class="text-3xl md:text-4xl font-black text-white mb-2">5★</div>
+                    <div class="text-blue-100 text-sm md:text-base">Average Rating</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <div class="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+                <div class="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-24 bg-white relative overflow-hidden scroll-section">
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-50/50 to-indigo-50/50"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    How <span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">FastFix</span> Works
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Get professional home services in just 3 simple steps
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <!-- Step 1 -->
+                <div class="text-center group slide-in-up step-card" style="animation-delay: 0.2s;">
+                    <div class="relative mb-8">
+                        <div class="w-24 h-24 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto shadow-2xl group-hover:shadow-blue-500/25 transition-all duration-500 group-hover:scale-110 icon-box">
+                            <i class="fas fa-search text-white text-3xl"></i>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center text-sm font-bold text-yellow-900">1</div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Choose Service</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Browse our comprehensive range of professional home services and select what you need.
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="text-center group slide-in-up step-card" style="animation-delay: 0.4s;">
+                    <div class="relative mb-8">
+                        <div class="w-24 h-24 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto shadow-2xl group-hover:shadow-green-500/25 transition-all duration-500 group-hover:scale-110 icon-box">
+                            <i class="fas fa-calendar-check text-white text-3xl"></i>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center text-sm font-bold text-yellow-900">2</div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Book Online</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Schedule your service at your convenient time. Our experts will arrive within 24 hours.
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="text-center group slide-in-up" style="animation-delay: 0.6s;">
+                    <div class="relative mb-8">
+                        <div class="w-24 h-24 bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mx-auto shadow-2xl group-hover:shadow-purple-500/25 transition-all duration-500 group-hover:scale-110">
+                            <i class="fas fa-check-circle text-white text-3xl"></i>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center text-sm font-bold text-yellow-900">3</div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Relax & Enjoy</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Sit back and relax while our certified professionals handle everything with expertise.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-gradient-to-br from-gray-50 to-blue-50 relative scroll-section">
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-100/30 to-indigo-100/30"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    Our <span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Premium</span> Services
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Comprehensive home maintenance solutions tailored to your needs
+                </p>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="max-w-2xl mx-auto mb-12">
+                <div class="relative">
+                    <input type="text" id="service-search" placeholder="Search for a service... (e.g. AC, Cleaning, Plumber)" 
+                           class="w-full pl-12 pr-4 py-4 rounded-full border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all shadow-sm text-lg">
+                    <i class="fas fa-search absolute left-5 top-5 text-gray-400 text-lg"></i>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="services-grid">
+                <!-- Services will be loaded by JavaScript -->
+            </div>
+
+            <!-- Pagination Controls -->
+            <div class="mt-12 flex justify-center items-center space-x-4">
+                <button id="prev-page" class="px-6 py-2 rounded-full border border-gray-300 text-gray-700 font-semibold hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition">
+                    <i class="fas fa-chevron-left mr-2"></i>Previous
+                </button>
+                <span id="page-info" class="font-medium text-gray-700">Page 1 of 1</span>
+                <button id="next-page" class="px-6 py-2 rounded-full border border-gray-300 text-gray-700 font-semibold hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition">
+                    Next<i class="fas fa-chevron-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-white relative overflow-hidden scroll-section">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-blue-100 to-indigo-100 rounded-full opacity-50 -translate-y-48 translate-x-48"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="slide-in-up">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                        Why Choose <span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">FastFix</span>?
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        We are committed to providing exceptional home services with certified professionals,
+                        guaranteed quality, and 100% customer satisfaction.
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-8">
+                        <div class="text-center p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl">
+                            <div class="text-4xl font-black text-blue-600 mb-2">50+</div>
+                            <div class="text-gray-600 font-medium">Happy Customers</div>
+                        </div>
+                        <div class="text-center p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl">
+                            <div class="text-4xl font-black text-green-600 mb-2">20+</div>
+                            <div class="text-gray-600 font-medium">Expert Technicians</div>
+                        </div>
+                        <div class="text-center p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl">
+                            <div class="text-4xl font-black text-purple-600 mb-2">24/7</div>
+                            <div class="text-gray-600 font-medium">Support Available</div>
+                        </div>
+                        <div class="text-center p-6 bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl">
+                            <div class="text-4xl font-black text-yellow-600 mb-2">5★</div>
+                            <div class="text-gray-600 font-medium">Average Rating</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative slide-in-up" style="animation-delay: 0.3s;">
+                    <div class="relative">
+                        <div class="w-full h-96 bg-gradient-to-br from-blue-200 to-indigo-300 rounded-3xl shadow-2xl overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-indigo-600/20"></div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="text-center text-white">
+                                    <i class="fas fa-tools text-8xl mb-4 opacity-50"></i>
+                                    <h3 class="text-2xl font-bold">Professional Excellence</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 w-24 h-24 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-2xl shadow-xl flex items-center justify-center">
+                            <i class="fas fa-award text-white text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Happy Customers Section -->
+    <section id="testimonials" class="py-24 bg-gradient-to-br from-indigo-50 to-purple-50 relative scroll-section">
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-indigo-100/30 to-purple-100/30"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    Our <span class="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Happy Customers</span>
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                <!-- Review 1 -->
+                <div class="bg-white p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 text-center">
+                    <h4 class="font-bold text-gray-900 text-lg mb-4">Suresh</h4>
+                    <div class="text-yellow-400 text-2xl mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 text-lg leading-relaxed">"Great service! Technicians were professional and fixed my AC quickly. Highly recommend for anyone looking for quality home services!"</p>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-white p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 text-center">
+                    <h4 class="font-bold text-gray-900 text-lg mb-4">Meera</h4>
+                    <div class="text-yellow-400 text-2xl mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 text-lg leading-relaxed">"Excellent cleaning service! Very thorough and professional. My home looks amazing now. Will definitely book again!"</p>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-white p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 text-center">
+                    <h4 class="font-bold text-gray-900 text-lg mb-4">Anil</h4>
+                    <div class="text-yellow-400 text-2xl mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 text-lg leading-relaxed">"Best plumbing service! Fixed all leakage issues in my house. Very skilled workers and reasonable pricing. Thank you FastFix!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Subscription Plans -->
+    <section id="subscriptions" class="py-24 bg-white relative scroll-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    FastFix <span class="bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent">AMC Plans</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Subscribe to our Annual Maintenance Contracts and save big on home services!
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Silver Plan -->
+                <div class="bg-gray-50 rounded-3xl p-8 border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center">
+                    <h3 class="text-2xl font-bold text-gray-700 mb-2">Silver Plan</h3>
+                    <div class="text-4xl font-black text-gray-900 mb-6">₹2,999 <span class="text-lg text-gray-500 font-normal">/year</span></div>
+                    <ul class="text-left space-y-4 mb-8 text-gray-600">
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>2 AC Servicing (Dry)</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>1 Basic Home Cleaning</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Free Plumbing Checkup</li>
+                        <li><i class="fas fa-times-circle text-red-400 mr-2"></i>Priority Booking</li>
+                    </ul>
+                    <button class="w-full bg-gray-800 hover:bg-gray-900 text-white py-3 rounded-xl font-bold transition">Subscribe Silver</button>
+                </div>
+
+                <!-- Gold Plan (Popular) -->
+                <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-3xl p-8 border-2 border-orange-400 shadow-2xl relative transform hover:-translate-y-2 transition-all duration-300 text-center scale-105 z-10">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-4 py-1 rounded-full text-sm font-bold shadow-md">Most Popular</div>
+                    <h3 class="text-2xl font-bold text-orange-600 mb-2">Gold Plan</h3>
+                    <div class="text-4xl font-black text-gray-900 mb-6">₹5,999 <span class="text-lg text-gray-500 font-normal">/year</span></div>
+                    <ul class="text-left space-y-4 mb-8 text-gray-700 font-medium">
+                        <li><i class="fas fa-check-circle text-orange-500 mr-2"></i>3 AC Servicing (Jet Clean)</li>
+                        <li><i class="fas fa-check-circle text-orange-500 mr-2"></i>2 Deep Home Cleaning</li>
+                        <li><i class="fas fa-check-circle text-orange-500 mr-2"></i>Free Electric/Plumbing Fix</li>
+                        <li><i class="fas fa-check-circle text-orange-500 mr-2"></i>Priority Support</li>
+                    </ul>
+                    <button class="w-full bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white py-3 rounded-xl font-bold transition shadow-lg">Subscribe Gold</button>
+                </div>
+
+                <!-- Platinum Plan -->
+                <div class="bg-gray-900 text-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 text-center">
+                    <h3 class="text-2xl font-bold text-blue-400 mb-2">Platinum Plan</h3>
+                    <div class="text-4xl font-black mb-6">₹9,999 <span class="text-lg text-gray-400 font-normal">/year</span></div>
+                    <ul class="text-left space-y-4 mb-8 text-gray-300">
+                        <li><i class="fas fa-check-circle text-blue-400 mr-2"></i>Unlimited AC Servicing</li>
+                        <li><i class="fas fa-check-circle text-blue-400 mr-2"></i>4 Deep Home Cleaning</li>
+                        <li><i class="fas fa-check-circle text-blue-400 mr-2"></i>Unlimited Appliance Repair</li>
+                        <li><i class="fas fa-check-circle text-blue-400 mr-2"></i>Dedicated Account Manager</li>
+                    </ul>
+                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-bold transition">Subscribe Platinum</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center mr-3">
+                            <i class="fas fa-tools text-white text-xl"></i>
+                        </div>
+                        <div class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
+                            FastFix
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-6 max-w-md leading-relaxed">
+                        Your trusted partner for professional home services. We provide expert solutions
+                        with certified technicians and guaranteed quality.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About</a></li>
+                        <li><a href="#testimonials" class="text-gray-400 hover:text-white transition-colors">Reviews</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold mb-6">Contact Info</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-3 text-blue-400"></i>
+                            93**13**60
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-blue-400"></i>
+                            info@fastfix.com
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-3 text-blue-400"></i>
+                            Pune, India
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-clock mr-3 text-blue-400"></i>
+                            24/7 Available
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-400">
+                    &copy; FastFix. All rights reserved 2026
+                    <span class="text-blue-400">Home Service At Your Doorstep</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full mx-4 shadow-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">Book Service</h3>
+                <button id="close-modal" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <form id="booking-form" class="space-y-4">
+                <input type="hidden" id="booking-service-name">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                    <input type="text" id="booking-name" required placeholder="Enter your name"
+                           class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 input-animated">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Mobile Number</label>
+                    <input type="tel" id="booking-mobile" required placeholder="Enter mobile number"
+                           class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 input-animated">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Address</label>
+                    <textarea id="booking-address" required placeholder="Enter your address" rows="2"
+                              class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none input-animated"></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Preferred Date</label>
+                    <input type="date" id="booking-date" required 
+                           class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 input-animated">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Additional Notes</label>
+                    <textarea id="booking-description" placeholder="Any special requirements..." rows="2"
+                              class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300">
+                    Confirm Booking
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div id="change-password-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full mx-4 shadow-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">Change Password</h3>
+                <button onclick="closeChangePasswordModal()" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <form id="change-password-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Current Password</label>
+                    <input type="password" id="current-password" required placeholder="Enter current password"
+                           class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">New Password</label>
+                    <input type="password" id="new-password" required placeholder="Enter new password"
+                           class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Confirm New Password</label>
+                    <input type="password" id="confirm-password" required placeholder="Confirm new password"
+                           class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300">
+                    Update Password
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- AI Chatbot UI -->
+    <div id="chatbot-container" class="fixed bottom-6 right-6 z-[70] hidden flex-col w-80 shadow-2xl rounded-2xl overflow-hidden bg-white border border-gray-200 transform transition-all duration-300 scale-95 opacity-0">
+        <!-- Header -->
+        <div class="bg-gradient-to-r from-blue-600 to-indigo-600 p-4 flex justify-between items-center text-white">
+            <div class="flex items-center">
+                <i class="fas fa-robot text-2xl mr-3"></i>
+                <h3 class="font-bold">FastFix Assistant</h3>
+            </div>
+            <button onclick="toggleChatbot()" class="text-white hover:text-red-200 transition">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <!-- Chat Body -->
+        <div id="chatbot-body" class="p-4 h-64 overflow-y-auto bg-gray-50 flex flex-col space-y-3 text-sm">
+            <!-- Messages go here -->
+            <div class="bg-blue-100 text-blue-900 self-start px-4 py-2 rounded-lg rounded-tl-none max-w-[80%] shadow-sm">
+                Hi! How can I help you today? Type "AC" or "Cleaning" to find a service.
+            </div>
+        </div>
+        <!-- Chat Input -->
+        <div class="p-3 bg-white border-t border-gray-200 flex">
+            <input type="text" id="chatbot-input" placeholder="Type here..." class="flex-1 p-2 border border-gray-300 rounded-l-lg outline-none focus:border-blue-500" onkeypress="handleChatKeyPress(event)">
+            <button onclick="sendChatMessage()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-r-lg transition">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Chatbot Toggle Button -->
+    <button id="chatbot-toggle-btn" onclick="toggleChatbot()" class="fixed bottom-6 right-6 z-[65] w-14 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-full shadow-2xl flex items-center justify-center text-2xl transform hover:scale-110 transition-all duration-300">
+        <i class="fas fa-comment-dots"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="script-new.js"></script>
+    <script>
+        // Initialize immediately 
+        loadServices();
+        updateNavbar();
+        initBookingForm();
+        initChangePasswordForm();
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Close modal handler
+        document.getElementById('close-modal').addEventListener('click', function() {
+            document.getElementById('booking-modal').classList.add('hidden');
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('booking-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.add('hidden');
+            }
+        });
+
+        // Close change password modal when clicking outside
+        document.getElementById('change-password-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.add('hidden');
+            }
+        });
+
+        // Smooth scrolling with animation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    // Add smooth scroll animation
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+
+        // Scroll Animation Observer
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Counter animation when visible
+                    if (entry.target.classList.contains('counter')) {
+                        animateCounters();
+                    }
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        // Apply scroll animation to sections
+        document.querySelectorAll('section').forEach(section => {
+            scrollObserver.observe(section);
+        });
+
+        // Show all sections immediately on page load
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('visible');
+        });
+
+        // Counter Animation Function
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter-value');
+            if (counters.length > 0) {
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    const duration = 2000;
+                    const increment = target / (duration / 16);
+                    let current = 0;
+
+                    const updateCounter = () => {
+                        current += increment;
+                        if (current < target) {
+                            counter.textContent = Math.floor(current) + '+';
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.textContent = target + '+';
+                        }
+                    };
+
+                    updateCounter();
+                });
+            }
+        }
+
+        // Trigger initial animation for hero section
+        document.addEventListener('DOMContentLoaded', () => {
+            // Hide Preloader instantly
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                preloader.style.opacity = '0';
+                setTimeout(() => preloader.style.display = 'none', 300);
+            }
+
+            const heroSection = document.getElementById('home');
+            if (heroSection) {
+                heroSection.classList.add('visible');
+            }
+            // Animate counters immediately on hero
+            setTimeout(animateCounters, 800);
+        });
+
+        // Scroll to top button
+        const scrollToTopBtn = document.getElementById('scroll-to-top');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.remove('hidden');
+            } else {
+                scrollToTopBtn.classList.add('hidden');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Contact form submission
+        const contactFormElement = document.getElementById('contact-form');
+        if (contactFormElement) {
+            contactFormElement.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! We will get back to you soon.');
+                this.reset();
+            });
+        }
+    </script>
+</body>
+</html>
