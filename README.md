@@ -1,6 +1,19 @@
+<div align="center">
+
 # 🛠️ Expert FastFix - Home Service At Your Doorstep
 
-Expert FastFix is a comprehensive, full-stack home service booking platform designed to connect customers with expert service professionals. It features a seamless, modern UI, multi-language support, automated PDF invoicing, and three distinct portals (Admin, Employee, and User) to manage the entire service lifecycle.
+![Python](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python)
+![Flask](https://img.shields.io/badge/Flask-000000?logo=flask&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?logo=mongodb&logoColor=white)
+
+**A Comprehensive, Full-Stack Home Service Booking Platform designed to connect customers with expert service professionals.**
+
+[🚀 Features](#-key-features) • [💻 Tech Stack](#-tech-stack) • [📦 Setup](#-installation--setup) • [🔐 Credentials](#-default-credentials)
+
+</div>
 
 ---
 
